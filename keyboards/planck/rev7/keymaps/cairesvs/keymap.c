@@ -64,8 +64,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 enum combos {
   // top left
-  ER_BSPC,
-  WE_CTRL_W,
+  WER_DELETE,
+  // top right
+  IO_BSPC,
+  UIO_CTRL_W,
   // home left
   DF_ESC,
   SD_TAB,
@@ -74,25 +76,44 @@ enum combos {
   JK_SEMICOLON, // :
   KL_ENTER,
   JL_SINGLE_QUOTE,
-  JKL_VIM_SAVE
+  JKL_DOUBLE_QUOTE,
+  // bottom left
+  COMMADOT_CIRC,
+  DOTSLASH_DOLLAR,
 };
 
-const uint16_t PROGMEM er_combo[] = {KC_E, KC_R, COMBO_END};
-const uint16_t PROGMEM we_combo[] = {KC_W, KC_E, COMBO_END};
 
+// top left
+const uint16_t PROGMEM wer_combo[] = {KC_W, KC_E, KC_R, COMBO_END};
+
+// top right
+const uint16_t PROGMEM io_combo[] = {KC_I, KC_O, COMBO_END};
+const uint16_t PROGMEM uio_combo[] = {KC_U, KC_I, KC_O, COMBO_END};
+
+// home left
 const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM sd_combo[] = {KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM sf_combo[] = {KC_S, KC_F, COMBO_END};
 
+// home right
 const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM jl_combo[] = {KC_J, KC_L, COMBO_END};
 const uint16_t PROGMEM jkl_combo[] = {KC_J, KC_K, KC_L, COMBO_END};
 
+// bottom left
+const uint16_t PROGMEM commadot_combo[] = {KC_COMMA, KC_DOT, COMBO_END};
+const uint16_t PROGMEM dotslash_combo[] = {KC_DOT, KC_SLASH, COMBO_END};
+
+
+
 combo_t key_combos[] = {
   // top left
-  [ER_BSPC] = COMBO(er_combo, KC_BSPC),
-  [WE_CTRL_W] = COMBO_ACTION(we_combo),
+  [WER_DELETE] = COMBO(wer_combo, KC_DEL),
+
+  // top right
+  [IO_BSPC] = COMBO(io_combo, KC_BSPC),
+  [UIO_CTRL_W] = COMBO(io_combo, C(KC_W)),
 
   // home left
   [DF_ESC] = COMBO(df_combo, KC_ESC),
@@ -103,24 +124,28 @@ combo_t key_combos[] = {
   [JK_SEMICOLON] = COMBO(jk_combo, S(KC_SCLN)),
   [KL_ENTER] = COMBO(kl_combo, KC_ENT),
   [JL_SINGLE_QUOTE] = COMBO(jl_combo, KC_QUOT),
-  [JKL_VIM_SAVE] = COMBO_ACTION(jkl_combo),
+  [JKL_DOUBLE_QUOTE] = COMBO(jkl_combo, S(KC_QUOT)),
+
+  // bottom left
+  [COMMADOT_CIRC] = COMBO(commadot_combo, KC_CIRC),
+  [DOTSLASH_DOLLAR] = COMBO(dotslash_combo, KC_DLR),
 };
 
-void process_combo_event(uint16_t combo_index, bool pressed) {
-  switch(combo_index) {
-    case JKL_VIM_SAVE:
-      if (pressed) {
-        tap_code(KC_ESC);
-        tap_code16(S(KC_SCLN));
-        tap_code(KC_W);
-      }
-      break;
-    case WE_CTRL_W:
-      if (pressed) {
-        tap_code16(C(KC_W));
-      }
-  }
-}
+/* void process_combo_event(uint16_t combo_index, bool pressed) { */
+/*   switch(combo_index) { */
+/*     case WE_CTRL_W: */
+/*       if (pressed) { */
+/*         tap_code16(C(KC_W)); */
+/*       } */
+/*       break; */
+/*     case UI_SKIP_VM: */
+/*       if (pressed) { */
+/*         tap_code(KC_LCTL); */
+/*         tap_code(KC_LGUI); */
+/*       } */
+/*       break; */
+/*   } */
+/* } */
 
 bool is_oneshot_cancel_key(uint16_t keycode) {
     switch (keycode) {
