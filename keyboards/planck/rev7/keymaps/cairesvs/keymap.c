@@ -66,8 +66,8 @@ enum combos {
   // top left
   WER_DELETE,
   // top right
-  IO_BSPC,
-  UIO_CTRL_W,
+  UI_BSPC,
+  UO_CTRL_W,
   // home left
   DF_ESC,
   SD_TAB,
@@ -78,8 +78,8 @@ enum combos {
   JL_SINGLE_QUOTE,
   JKL_DOUBLE_QUOTE,
   // bottom left
-  COMMADOT_CIRC,
-  DOTSLASH_DOLLAR,
+  MCOMMA_CIRC,
+  MDOT_DOLLAR,
 };
 
 
@@ -87,8 +87,8 @@ enum combos {
 const uint16_t PROGMEM wer_combo[] = {KC_W, KC_E, KC_R, COMBO_END};
 
 // top right
-const uint16_t PROGMEM io_combo[] = {KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM uio_combo[] = {KC_U, KC_I, KC_O, COMBO_END};
+const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM uo_combo[] = {KC_U, KC_O, COMBO_END};
 
 // home left
 const uint16_t PROGMEM df_combo[] = {KC_D, KC_F, COMBO_END};
@@ -102,8 +102,8 @@ const uint16_t PROGMEM jl_combo[] = {KC_J, KC_L, COMBO_END};
 const uint16_t PROGMEM jkl_combo[] = {KC_J, KC_K, KC_L, COMBO_END};
 
 // bottom left
-const uint16_t PROGMEM commadot_combo[] = {KC_COMMA, KC_DOT, COMBO_END};
-const uint16_t PROGMEM dotslash_combo[] = {KC_DOT, KC_SLASH, COMBO_END};
+const uint16_t PROGMEM mcomma_combo[] = {KC_M, KC_COMMA, COMBO_END};
+const uint16_t PROGMEM mdot_combo[] = {KC_M, KC_DOT, COMBO_END};
 
 
 
@@ -112,8 +112,8 @@ combo_t key_combos[] = {
   [WER_DELETE] = COMBO(wer_combo, KC_DEL),
 
   // top right
-  [IO_BSPC] = COMBO(io_combo, KC_BSPC),
-  [UIO_CTRL_W] = COMBO(io_combo, C(KC_W)),
+  [UI_BSPC] = COMBO(ui_combo, KC_BSPC),
+  [UO_CTRL_W] = COMBO(uo_combo, C(KC_W)),
 
   // home left
   [DF_ESC] = COMBO(df_combo, KC_ESC),
@@ -127,8 +127,8 @@ combo_t key_combos[] = {
   [JKL_DOUBLE_QUOTE] = COMBO(jkl_combo, S(KC_QUOT)),
 
   // bottom left
-  [COMMADOT_CIRC] = COMBO(commadot_combo, KC_CIRC),
-  [DOTSLASH_DOLLAR] = COMBO(dotslash_combo, KC_DLR),
+  [MCOMMA_CIRC] = COMBO(mcomma_combo, KC_CIRC),
+  [MDOT_DOLLAR] = COMBO(mdot_combo, KC_DLR),
 };
 
 /* void process_combo_event(uint16_t combo_index, bool pressed) { */
